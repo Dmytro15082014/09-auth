@@ -1,27 +1,33 @@
 import { type Note, type NoteInput } from "../../types/note";
-import { nextServer } from "../api";
+import { nextServer } from "./api";
 
-export interface FetchNotesResponse {
+export type FetchNotesResponse = {
   notes: Note[];
   totalPages: number;
   tag?: string;
-}
-
-interface paramsProps {
+};
+export type paramsProps = {
   page: number;
   perPage: number;
   search?: string;
   tag?: string;
-}
+};
+export type RegisterRequest = {
+  email: string;
+  password: string;
+};
+export type User = {
+  username: string;
+  email: string;
+  avatar: string;
+};
 
-// axios.defaults.baseURL = "https://notehub-public.goit.study/api";
-// const baseUrl = process.env.NEXT_PUBLIC_API_URL + "/api";
 const limit = 12;
 
-const headersToken = {
-  Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-  Accept: "application/json",
-};
+// const headersToken = {
+//   Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+//   Accept: "application/json",
+// };
 
 export async function fetchNotes(
   search: string,
@@ -38,28 +44,33 @@ export async function fetchNotes(
 
   const { data } = await nextServer.get<FetchNotesResponse>(`/notes`, {
     params,
-    headers: headersToken,
+    // headers: headersToken,
   });
   return data;
 }
 
 export async function createNote(noteData: NoteInput): Promise<Note> {
   const { data } = await nextServer.post<Note>("/notes", noteData, {
-    headers: headersToken,
+    // headers: headersToken,
   });
   return data;
 }
 
 export async function deleteNote(noteId: number): Promise<Note> {
   const { data } = await nextServer.delete<Note>(`/notes/${noteId}`, {
-    headers: headersToken,
+    // headers: headersToken,
   });
   return data;
 }
 
 export async function fetchNoteById(id: number): Promise<Note> {
   const { data } = await nextServer.get<Note>(`/notes/${id}`, {
-    headers: headersToken,
+    // headers: headersToken,
   });
+  return data;
+}
+
+export async function register(newUserData: RegisterRequest): Promise<User> {
+  const { data } = await nextServer.post<User>("/auth/register", newUserData);
   return data;
 }

@@ -16,6 +16,12 @@ const Header = () => {
           <li className={css.navigationLink}>
             <TagsMenu />
           </li>
+          <li className={css.navigationItem}>
+            <Link href="/sign-in">Login</Link>
+          </li>
+          <li className={css.navigationItem}>
+            <Link href="/sign-up">Register</Link>
+          </li>
         </ul>
       </nav>
     </header>
