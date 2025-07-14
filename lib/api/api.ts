@@ -1,7 +1,11 @@
 import { User } from "@/types/user";
 import axios from "axios";
 
-type CheckSessionRequest = { success: boolean };
+export type CheckSessionRequest = { success: boolean };
+export type LoginRequest = {
+  email: string;
+  password: string;
+};
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL + "/api";
 
@@ -18,4 +22,13 @@ export async function checkSession() {
 export async function getMe() {
   const { data } = await nextServer.get<User>("/users/me");
   return data;
+}
+
+export async function login(data: LoginRequest) {
+  const res = await nextServer.post<User>("/auth/login", data);
+  return res.data;
+}
+
+export async function logout(): Promise<void> {
+  await nextServer.post("/auth/logout");
 }

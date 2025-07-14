@@ -9,7 +9,7 @@ export async function GET() {
   const refreshToken = (await cookieStore).get("refreshToken")?.value;
   if (accessToken) return NextResponse.json({ success: true });
   if (refreshToken) {
-    const apiRes = await api.get("/auth/session", {
+    const apiRes = await api.get("auth/session", {
       headers: {
         Cookie: (await cookieStore).toString(),
       },

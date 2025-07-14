@@ -20,11 +20,6 @@ export type RegisterRequest = {
 
 const limit = 12;
 
-// const headersToken = {
-//   Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-//   Accept: "application/json",
-// };
-
 export async function fetchNotes(
   search: string,
   page: number,
@@ -40,29 +35,22 @@ export async function fetchNotes(
 
   const { data } = await nextServer.get<FetchNotesResponse>(`/notes`, {
     params,
-    // headers: headersToken,
   });
   return data;
 }
 
 export async function createNote(noteData: NoteInput): Promise<Note> {
-  const { data } = await nextServer.post<Note>("/notes", noteData, {
-    // headers: headersToken,
-  });
+  const { data } = await nextServer.post<Note>("/notes", noteData);
   return data;
 }
 
 export async function deleteNote(noteId: number): Promise<Note> {
-  const { data } = await nextServer.delete<Note>(`/notes/${noteId}`, {
-    // headers: headersToken,
-  });
+  const { data } = await nextServer.delete<Note>(`/notes/${noteId}`);
   return data;
 }
 
 export async function fetchNoteById(id: number): Promise<Note> {
-  const { data } = await nextServer.get<Note>(`/notes/${id}`, {
-    // headers: headersToken,
-  });
+  const { data } = await nextServer.get<Note>(`/notes/${id}`);
   return data;
 }
 
