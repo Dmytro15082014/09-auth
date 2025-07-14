@@ -1,3 +1,4 @@
+import { User } from "@/types/user";
 import { type Note, type NoteInput } from "../../types/note";
 import { nextServer } from "./api";
 
@@ -15,11 +16,6 @@ export type paramsProps = {
 export type RegisterRequest = {
   email: string;
   password: string;
-};
-export type User = {
-  username: string;
-  email: string;
-  avatar: string;
 };
 
 const limit = 12;
