@@ -5,7 +5,6 @@ import css from "./AuthNavigation.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import { logout } from "@/lib/api/clientApi";
-import { TagsMenu } from "../TagsMenu/TagsMenu";
 
 const AuthNavigation = () => {
   const router = useRouter();
@@ -25,9 +24,6 @@ const AuthNavigation = () => {
         <Link href="/profile" prefetch={false} className={css.navigationLink}>
           Profile
         </Link>
-      </li>
-      <li className={css.navigationLink}>
-        <TagsMenu />
       </li>
       <li className={css.navigationItem}>
         <p className={css.userEmail}>{user?.email}</p>
