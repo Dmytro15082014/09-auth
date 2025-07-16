@@ -15,7 +15,7 @@ const AuthRoutes = ({ children }: Props) => {
     router.refresh();
     setIsLoading(false);
   }, [router]);
-  return isLoading ? "Loading..." : children;
+  return isLoading ? "Loading, please wait..." : children;
 };
 
 export default AuthRoutes;
