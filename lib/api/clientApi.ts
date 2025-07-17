@@ -10,7 +10,7 @@ export type FetchNotesResponse = {
 export type paramsProps = {
   page: number;
   perPage: number;
-  search?: string;
+  search: string;
   tag?: string;
 };
 export type RegisterRequest = {
@@ -25,22 +25,20 @@ export type LoginRequest = {
   password: string;
 };
 
-const limit = 12;
+const limit = 10;
 
 export async function fetchNotes(
   search: string,
   page: number,
-  tag?: string | null
+  tag?: string
 ): Promise<FetchNotesResponse> {
   const params: paramsProps = {
+    search: search.trim(),
     page,
     perPage: limit,
   };
-
-  if (search.trim()) params.search = search;
   if (tag) params.tag = tag;
-
-  const { data } = await nextServer.get<FetchNotesResponse>(`/notes`, {
+  const { data } = await nextServer.get<FetchNotesResponse>("/notes", {
     params,
   });
   return data;
