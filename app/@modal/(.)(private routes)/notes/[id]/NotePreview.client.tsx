@@ -14,15 +14,14 @@ const NotePreview = () => {
   };
   useEscapeClose(handleClose);
   const { id } = useParams<{ id: string }>();
-  const noteId = id ? Number(id) : null;
   const {
     data: note,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["note", noteId],
-    queryFn: () => fetchNoteById(Number(noteId)),
-    enabled: noteId !== null, //!!id,
+    queryKey: ["note", id],
+    queryFn: () => fetchNoteById(Number(id)),
+    enabled: !!id,
     refetchOnMount: false,
   });
   if (isLoading) {
