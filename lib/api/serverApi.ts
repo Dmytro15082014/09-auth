@@ -46,7 +46,7 @@ export async function fetchNotes(
   };
   if (tag) noteSearchParams.params.tag = tag;
   const { data } = await nextServer.get<FetchNotesResponse>(
-    "notes/",
+    "/notes",
     noteSearchParams
   );
   return data;
