@@ -1,4 +1,4 @@
-import { fetchNotes } from "@/lib/api/clientApi";
+import { fetchNotes } from "@/lib/api/serverApi";
 import React from "react";
 import NotesClient from "./Notes.client";
 import { Metadata } from "next";

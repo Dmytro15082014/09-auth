@@ -24,7 +24,6 @@ export type LoginRequest = {
   email: string;
   password: string;
 };
-
 const limit = 10;
 
 export async function fetchNotes(
@@ -38,7 +37,7 @@ export async function fetchNotes(
     perPage: limit,
   };
   if (tag) params.tag = tag;
-  const { data } = await nextServer.get<FetchNotesResponse>("/notes", {
+  const { data } = await nextServer.get<FetchNotesResponse>("notes/", {
     params,
   });
   return data;
