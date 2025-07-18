@@ -5,7 +5,7 @@ import useEscapeClose from "@/hooks/useEscapeClose";
 import { fetchNoteById } from "@/lib/api/clientApi";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
-import css from "../../../../../components/NotePreview/NotePreview.module.css";
+import css from "../../../../components/NotePreview/NotePreview.module.css";
 
 const NotePreview = () => {
   const router = useRouter();
