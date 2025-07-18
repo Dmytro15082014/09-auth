@@ -20,8 +20,8 @@ const NotePreview = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["note", id],
-    queryFn: () => fetchNoteById(Number(id)),
+    queryKey: ["note", noteId],
+    queryFn: () => fetchNoteById(Number(noteId)),
     enabled: noteId !== null, //!!id,
     refetchOnMount: false,
   });

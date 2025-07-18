@@ -24,7 +24,7 @@ export type LoginRequest = {
   email: string;
   password: string;
 };
-const limit = 10;
+const limit = 12;
 
 export async function fetchNotes(
   search: string,
