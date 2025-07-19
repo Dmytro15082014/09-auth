@@ -21,7 +21,6 @@ const NotesClient = ({ initialTag }: Props) => {
   const { data, isSuccess } = useQuery({
     queryKey: ["note", debouncedSearch, page, tag],
     queryFn: () => fetchNotes(debouncedSearch, page, tag),
-    // initialData: items,
     refetchOnMount: false,
     placeholderData: keepPreviousData,
   });
