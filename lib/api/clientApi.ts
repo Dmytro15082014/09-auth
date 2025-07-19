@@ -24,6 +24,7 @@ export type LoginRequest = {
   email: string;
   password: string;
 };
+export type SetUserNameReq = { email: string; username: string };
 const limit = 12;
 
 export async function fetchNotes(
@@ -79,4 +80,12 @@ export async function login(data: LoginRequest) {
 
 export async function logout(): Promise<void> {
   await nextServer.post("/auth/logout");
+}
+
+export async function changeNameMe(newUserName: User): Promise<SetUserNameReq> {
+  const { data } = await nextServer.patch<SetUserNameReq>(
+    "/users/me",
+    newUserName
+  );
+  return data;
 }

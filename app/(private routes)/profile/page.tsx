@@ -2,6 +2,25 @@ import { getServerMe } from "@/lib/api/serverApi";
 import css from "./ProfilePage.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Created for you, manage your tasks and personal time.",
+  openGraph: {
+    title: "Profile",
+    description: "Change your personal information",
+    url: "https://08-zustand-m8zqgnqxp-dima-terens-projects.vercel.app",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "logo NoteHub",
+      },
+    ],
+  },
+};
 
 const Profile = async () => {
   const user = await getServerMe();
@@ -10,7 +29,7 @@ const Profile = async () => {
       <div className={css.profileCard}>
         <div className={css.header}>
           <h1 className={css.formTitle}>{user.email}</h1>
-          <Link href="/" className={css.editProfileButton}>
+          <Link href="/profile/edit" className={css.editProfileButton}>
             Edit Profile
           </Link>
         </div>
@@ -24,7 +43,7 @@ const Profile = async () => {
           />
         </div>
         <div className={css.profileInfo}>
-          <p>Username: your_username</p>
+          <p>Username: {user.username ? user.username : user.email}</p>
           <p>Email: {user.email}</p>
         </div>
       </div>
