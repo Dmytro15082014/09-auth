@@ -66,3 +66,7 @@
   display: inline-block;
   background-color: transparent;
 }
+.loader {
+  position: absolute;
+  z-index: 9999;
+}

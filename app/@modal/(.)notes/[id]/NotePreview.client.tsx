@@ -20,12 +20,12 @@ const NotePreview = () => {
     error,
   } = useQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(Number(id)),
+    queryFn: () => fetchNoteById(String(id)),
     enabled: !!id,
     refetchOnMount: false,
   });
   if (isLoading) {
-    return <p>Loading, please wait...</p>;
+    return <p className={css.loader}>Loading, please wait...</p>;
   }
   if (error || !note) {
     return <p>Something went wrong.</p>;

@@ -29,7 +29,7 @@ export async function getServerMe(): Promise<User> {
   return data;
 }
 
-export async function fetchNotes(
+export async function fetchNotesServer(
   search: string,
   page: number,
   tag?: string
@@ -52,7 +52,7 @@ export async function fetchNotes(
   );
   return data;
 }
-export async function fetchNoteById(id: number): Promise<Note> {
+export async function fetchNoteByIdServer(id: string): Promise<Note> {
   const cookieStore = await cookies();
   const { data } = await nextServer.get<Note>(`/notes/${id}`, {
     headers: { Cookie: cookieStore.toString() },

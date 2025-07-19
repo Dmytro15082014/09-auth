@@ -54,7 +54,7 @@ export async function deleteNote(noteId: number): Promise<Note> {
   return data;
 }
 
-export async function fetchNoteById(id: number): Promise<Note> {
+export async function fetchNoteById(id: string): Promise<Note> {
   const { data } = await nextServer.get<Note>(`/notes/${id}`);
   return data;
 }

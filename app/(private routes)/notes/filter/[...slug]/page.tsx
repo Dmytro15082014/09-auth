@@ -1,4 +1,4 @@
-import { fetchNotes } from "@/lib/api/serverApi";
+import { fetchNotesServer } from "@/lib/api/serverApi";
 import React from "react";
 import NotesClient from "./Notes.client";
 import { Metadata } from "next";
@@ -32,7 +32,7 @@ const App = async ({ params }: Props) => {
   const { slug } = await params;
   const tag = slug?.[0] === "All" ? undefined : slug?.[0];
 
-  const data = await fetchNotes("", 1, tag);
+  const data = await fetchNotesServer("", 1, tag);
 
   return (
     <>
