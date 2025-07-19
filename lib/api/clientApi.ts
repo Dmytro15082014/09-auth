@@ -49,7 +49,7 @@ export async function createNote(noteData: NoteInput): Promise<Note> {
   return data;
 }
 
-export async function deleteNote(noteId: number): Promise<Note> {
+export async function deleteNote(noteId: string): Promise<Note> {
   const { data } = await nextServer.delete<Note>(`/notes/${noteId}`);
   return data;
 }
