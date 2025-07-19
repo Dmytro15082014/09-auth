@@ -50,7 +50,7 @@ const EditProfile = () => {
               type="text"
               name="username"
               className={css.input}
-              defaultValue={user?.username}
+              defaultValue={user?.username ? user?.username : "Add your name"}
               required
             />
           </div>
