@@ -7,15 +7,13 @@ import SearchBox from "../../../../../components/SearchBox/SearchBox";
 import NoteList from "../../../../../components/NoteList/NoteList";
 import Pagination from "../../../../../components/Pagination/Pagination";
 import { fetchNotes } from "../../../../../lib/api/clientApi";
-import { FetchNotesResponse } from "../../../../../lib/api/clientApi";
 import Link from "next/link";
 
 type Props = {
-  items: FetchNotesResponse;
   initialTag?: string;
 };
 
-const NotesClient = ({ items, initialTag }: Props) => {
+const NotesClient = ({ initialTag }: Props) => {
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
   const [debouncedSearch] = useDebounce(search, 300);
@@ -23,7 +21,7 @@ const NotesClient = ({ items, initialTag }: Props) => {
   const { data, isSuccess } = useQuery({
     queryKey: ["note", debouncedSearch, page, tag],
     queryFn: () => fetchNotes(debouncedSearch, page, tag),
-    initialData: items,
+    // initialData: items,
     refetchOnMount: false,
     placeholderData: keepPreviousData,
   });
