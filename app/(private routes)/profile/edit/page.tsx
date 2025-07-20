@@ -2,20 +2,23 @@
 import Image from "next/image";
 import css from "./page.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
-import { changeNameMe } from "@/lib/api/clientApi";
+import { changeNameMe, getMe } from "@/lib/api/clientApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { User } from "@/types/user";
 import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
   const { user } = useAuthStore();
+  const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
 
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: (newName: User) => changeNameMe(newName),
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ["name"] });
+      const user = await getMe();
+      setUser(user);
       router.push("/profile");
     },
   });
